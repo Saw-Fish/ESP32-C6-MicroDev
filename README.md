@@ -31,6 +31,6 @@ Designed in KiCad
 Contributions, issues and feature requests are welcome.
 
 
-# License
+## License
 
 Licensed under the CERN-OHL-S-2.0 license
