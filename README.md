@@ -1,6 +1,8 @@
 # ESP32-C6-MicroDev
 A minimal dev board based on the ESP32-C6-MINI-1-N4 designed to solve a niche problem that requires a connection via USB-A with non standard pinout.
 
+The full source for later versions will be posted once complete. V0.1 is not for production as there are minor bugs.
+
 ## Installation:
 
 Purchased boards will be flashed with a minimal program that provides basic information about the board via serial. Baud rate 115200. 
