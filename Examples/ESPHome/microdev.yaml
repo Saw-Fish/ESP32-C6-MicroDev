@@ -5,17 +5,20 @@
 ###
 substitutions:
   device_name: microdev  #Name the device, eg: microdev. Lowercase only
-  fan_name: Office-Fan #Fan name
-  light_name: Office-Light #Light name
+  fan_name: Fan #Fan name
+  light_name: Light #Light name
   skyfan_model: "SKY1203"     #Used for Power calculations, eg: SKY903,SKY1203,SKY1303,SKY1503,SKY1204,SKY1404
 
 
 esphome:
   name: ${device_name}
   name_add_mac_suffix: true
+  project:
+    name: MicroDev.Fan
+    version: "0.1"
   min_version: 2025.11.0
   on_boot:
-    priority: -100  
+    priority: -100  # Run after everything else
     then:
       - delay: 2s  
 
@@ -32,14 +35,18 @@ api:
 
 # Allow Over-The-Air updates
 ota:
-  - platform: esphome
-    
-
+- platform: esphome
 
 wifi:
   ssid: !secret wifi_ssid         ### Don't forget to change these
   password: !secret wifi_password
 
+  ap:
+    password: "12345678"  ### Change Me
+
+captive_portal:
+
+improv_serial:
 
 ### Thanks to James Eggleston and his effort making this work
 packages:  
@@ -47,13 +54,18 @@ packages:
     url: https://github.com/jeggleston1981/skyfandc
     files: [sensor_power_fan.yaml, sensor_power_light.yaml,tuya_fan.yaml,tuya_light.yaml]
 
+
+dashboard_import:
+  package_import_url: github://Saw-Fish/ESP32-C6-MicroDev/Examples/ESPHome/microdev.yaml@main
+  import_full_config: true # or true
+
 i2c:
   sda: 22
   scl: 23
   scan: true
 
 
-uart:
+uart: # For tuya communication
   rx_pin: GPIO3
   tx_pin: GPIO2
   baud_rate: 9600
