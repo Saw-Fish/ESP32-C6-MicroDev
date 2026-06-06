@@ -15,7 +15,7 @@ esphome:
   name_add_mac_suffix: true
   project:
     name: MicroDev.Fan
-    version: "0.1"
+    version: "0.2"
   min_version: 2025.11.0
   on_boot:
     priority: -100  # Run after everything else
@@ -86,6 +86,7 @@ sensor:
     name: ${fan_name} WiFi Signal Percent
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    device_class: "" #Set device class to none to remove error in HA
     unit_of_measurement: "%"
     entity_category: diagnostic
 
